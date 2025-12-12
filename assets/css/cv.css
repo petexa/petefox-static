@@ -54,3 +54,5 @@ hr {
   .page { margin: 32px auto; }
   h1 { font-size: 30px; }
 }
+.placeholder { opacity: 0.5; font-style: italic; }
+
