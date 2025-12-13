@@ -1,0 +1,24 @@
+name: Check CV Save Endpoint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check-secret:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check CV_SAVE_ENDPOINT secret
+        env:
+          CV_SAVE_ENDPOINT: ${{ secrets.CV_SAVE_ENDPOINT }}
+        run: |
+          if [ -z "$CV_SAVE_ENDPOINT" ]; then
+            echo "CV_SAVE_ENDPOINT secret is missing or empty"
+            exit 1
+          fi
+          echo "CV_SAVE_ENDPOINT secret is present"
